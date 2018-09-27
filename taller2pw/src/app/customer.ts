@@ -3,4 +3,5 @@ export class Customer {
   name: string;
   ci: string;
   phone: string;
+  direction: string;
 }
