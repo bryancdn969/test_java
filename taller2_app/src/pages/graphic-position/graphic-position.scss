@@ -1,0 +1,21 @@
+page-graphic-position {
+  #floating-panel {
+    position: absolute;
+    top: 170px;
+    right: 5px;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+  }
+  #map {
+    top: 70px;
+    height: 60%;
+  }
+
+}
+

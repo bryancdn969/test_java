@@ -1,0 +1,20 @@
+
+<h1 text-center> Cuarto entregable y Quinto entregable</h1>
+<p>4: Generar una funcionalidad para definir una ruta en el mapa de google</p>
+<p>5: Generar una funcionalidad para seleccionar una coordenada en el mapa de google</p>
+
+<body>
+<div id="floating-panel">
+  <b>Start: </b>
+  <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
+    <option value="Quito 170144">Estadio de la liga</option>
+    <option value="-0.168236,-78.482067">Iñaquito</option>
+  </select><br>
+  <b>End: </b>
+  <select [(ngModel)]="end" id="end" (change)="calculateAndDisplayRoute()">
+    <option value="Av Pedro Vicente Maldonado, Quito 170111">C.C El Recreo</option>
+    <option value="-0.170682,-78.476359">6 De Diciembre</option>
+  </select>
+</div>
+<div class="p" #map id="map"></div>
+</body>

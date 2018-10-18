@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>GraphicPosition</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <h1 text-center> Cuarto entregable y Quinto entregable</h1>
+  <p>4: Generar una funcionalidad para definir una ruta en el mapa de google</p>
+  <p>5: Generar una funcionalidad para seleccionar una coordenada en el mapa de google</p>
+
+    <div id="floating-panel">
+      <b>Start: </b>
+      <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
+        <option value="Quito 170144">Estadio de la liga</option>
+        <option value="st louis, mo">St Louis</option>
+        <option value="joplin, mo">Joplin, MO</option>
+        <option value="oklahoma city, ok">Oklahoma City</option>
+        <option value="amarillo, tx">Amarillo</option>
+        <option value="gallup, nm">Gallup, NM</option>
+        <option value="flagstaff, az">Flagstaff, AZ</option>
+        <option value="winona, az">Winona</option>
+        <option value="kingman, az">Kingman</option>
+        <option value="barstow, ca">Barstow</option>
+        <option value="san bernardino, ca">San Bernardino</option>
+        <option value="los angeles, ca">Los Angeles</option>
+      </select><br>
+      <b>End: </b>
+      <select [(ngModel)]="end" id="end" (change)="calculateAndDisplayRoute()">
+        <option value="Av Pedro Vicente Maldonado, Quito 170111">C.C El Recreo</option>
+        <option value="st louis, mo">St Louis</option>
+        <option value="joplin, mo">Joplin, MO</option>
+        <option value="oklahoma city, ok">Oklahoma City</option>
+        <option value="amarillo, tx">Amarillo</option>
+        <option value="gallup, nm">Gallup, NM</option>
+        <option value="flagstaff, az">Flagstaff, AZ</option>
+        <option value="winona, az">Winona</option>
+        <option value="kingman, az">Kingman</option>
+        <option value="barstow, ca">Barstow</option>
+        <option value="san bernardino, ca">San Bernardino</option>
+        <option value="los angeles, ca">Los Angeles</option>
+      </select>
+    </div>
+  <div class="p" #map id="map"></div>
+</ion-content>
+
+
+<!-- 3: Circle https://stackblitz.com/edit/angular-google-maps-demo?file=app%2Fapp.component.ts
+
+      3.1 Ionic Native https://es.slideshare.net/MasashiKatsumata/ionic-nativegooglemaps-81563234
+      3.2 Ionic circle native https://github.com/mapsplugin/cordova-plugin-googlemaps-doc/blob/master/v1.4.0/class/Circle/README.md
+      -->
