@@ -1,8 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {GeolocationOptions, Geoposition, Geolocation} from "@ionic-native/geolocation";
-
-declare var google;
+import {Geolocation} from "@ionic-native/geolocation";
+import { MouseEvent } from '@agm/core';
 
 @Component({
   selector: 'page-home',
@@ -10,39 +8,50 @@ declare var google;
 })
 export class HomePage {
 
-  options : GeolocationOptions;
-  currentPos : Geoposition;
-  @ViewChild('map') mapElement: ElementRef;
-  map : any;
+  // google maps zoom level
+  zoom: number = 14;
 
-  constructor( private navCtrl: NavController, private geolocation: Geolocation) {
+  // initial center position for the map
+  lat: number  = -0.181869;
+  lng: number = -78.479024;
+
+  map: any;
+
+  constructor(private geolocation: Geolocation) {
+
 
   }
 
-  ionViewDidLoad() {
-    this.loadMap();
+  markerDragEnd(m: marker, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
   }
 
-  loadMap(){
-    this.geolocation.getCurrentPosition().then((position) => {
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`)
+  }
 
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-      let mapOptions = {
-        center: latLng,
-        zoom: 18,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-      let marker = new google.maps.Marker({
-        map: this.map,
-        animation: google.maps.Animation.DROP,
-        position: this.map.getCenter()
-      });
-    }, (err) => {
-      console.log(err);
+  mapClicked($event: MouseEvent) {
+    this.markers.push({
+      lat: $event.coords.lat,
+      lng: $event.coords.lng,
+      draggable: true
     });
   }
 
+  markers: marker[] = [
+    {
+      lat: -0.181869,
+      lng: -78.479024,
+      label: 'Av. Eloy Alfaro',
+      draggable: false
+    }
+  ];
+
+}
+
+interface marker {
+  lat: any;
+  lng: any;
+  label?: string;
+  draggable: boolean;
 }

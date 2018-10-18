@@ -8,22 +8,29 @@ import { ListPage } from '../pages/list/list';
 import {Geolocation} from "@ionic-native/geolocation";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { GraphicPositionPage} from "../pages/graphic-position/graphic-position";
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    GraphicPositionPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBbsOlMryAHu2ESwHHSwrDBIUU7fiENNoM'
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    GraphicPositionPage
   ],
   providers: [
     StatusBar,
