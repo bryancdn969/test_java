@@ -15,36 +15,14 @@
   <p>5: Generar una funcionalidad para seleccionar una coordenada en el mapa de google</p>
 
     <div id="floating-panel">
-      <b>Start: </b>
-      <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
-        <option value="Quito 170144">Estadio de la liga</option>
-        <option value="st louis, mo">St Louis</option>
-        <option value="joplin, mo">Joplin, MO</option>
-        <option value="oklahoma city, ok">Oklahoma City</option>
-        <option value="amarillo, tx">Amarillo</option>
-        <option value="gallup, nm">Gallup, NM</option>
-        <option value="flagstaff, az">Flagstaff, AZ</option>
-        <option value="winona, az">Winona</option>
-        <option value="kingman, az">Kingman</option>
-        <option value="barstow, ca">Barstow</option>
-        <option value="san bernardino, ca">San Bernardino</option>
-        <option value="los angeles, ca">Los Angeles</option>
-      </select><br>
-      <b>End: </b>
-      <select [(ngModel)]="end" id="end" (change)="calculateAndDisplayRoute()">
-        <option value="Av Pedro Vicente Maldonado, Quito 170111">C.C El Recreo</option>
-        <option value="st louis, mo">St Louis</option>
-        <option value="joplin, mo">Joplin, MO</option>
-        <option value="oklahoma city, ok">Oklahoma City</option>
-        <option value="amarillo, tx">Amarillo</option>
-        <option value="gallup, nm">Gallup, NM</option>
-        <option value="flagstaff, az">Flagstaff, AZ</option>
-        <option value="winona, az">Winona</option>
-        <option value="kingman, az">Kingman</option>
-        <option value="barstow, ca">Barstow</option>
-        <option value="san bernardino, ca">San Bernardino</option>
-        <option value="los angeles, ca">Los Angeles</option>
-      </select>
+      <b>From: </b>
+  <select [(ngModel)]="start" name="address" class="custom-select" id="start" (change)="calculateAndDisplayRoute()">
+      <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option> 
+  </select><br>
+  <b>To: </b>
+  <select [(ngModel)]="end" name="address" class="custom-select" id="end" (change)="calculateAndDisplayRoute()">
+      <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option> 
+  </select>
     </div>
   <div class="p" #map id="map"></div>
 </ion-content>

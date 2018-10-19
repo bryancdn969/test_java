@@ -1,7 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MapService} from '../map.service';
 
-
 declare var google: any;
 
 @Component({
@@ -18,23 +17,25 @@ export class UpdateComponent implements OnInit {
   end = 'Av Pedro Vicente Maldonado, Quito 170111';
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
-  public validationList: any;
+  validationList: any;
+  address: any[];
 
   constructor(private service: MapService) {
 
   }
+
   ngOnInit() {
     this.initMap();
 
     let pro = this.service.getAddress();
     Promise.resolve(pro).then(data => {
       this.validationList = JSON.parse(JSON.stringify(data)).response;
-
       console.log(this.validationList);
+      this.address = this.validationList;
+      console.log(this.address);
     });
 
   }
-
 
   initMap() {
 

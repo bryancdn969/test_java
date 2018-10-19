@@ -9,7 +9,6 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TableComponent } from './table/table.component';
 import {RouterModule, Routes} from '@angular/router';
-import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { UpdateComponent } from './update/update.component';
 import { FormsModule }   from '@angular/forms';
@@ -18,8 +17,8 @@ import {HttpModule} from '@angular/http';
 import { RouteComponent } from './route/route.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 
+
 const appRoutes: Routes = [
-  { path: 'Register', component: RegisterComponent },
   { path: 'Search', component: SearchComponent },
   { path: 'Update', component: UpdateComponent },
   { path: 'Route', component: RouteComponent }
@@ -32,7 +31,6 @@ const appRoutes: Routes = [
     NavComponent,
     DashboardComponent,
     TableComponent,
-    RegisterComponent,
     SearchComponent,
     UpdateComponent,
     RouteComponent
@@ -58,7 +56,7 @@ const appRoutes: Routes = [
     }),
     FormsModule,
     HttpClientModule,
-    HttpModule,
+    HttpModule
   ],
   providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
