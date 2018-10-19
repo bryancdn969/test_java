@@ -1,6 +1,7 @@
 import {Component, ElementRef, ViewChild, Output, EventEmitter, OnInit, OnChanges, SimpleChange} from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import {Geolocation} from "@ionic-native/geolocation";
+import {MapProvider} from "../../providers/map/map";
 
 declare var google;
 
@@ -17,13 +18,23 @@ export class GraphicPositionPage {
   end = 'chicago, il';
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
+  address: any[];
+  validationList: any;
 
-  constructor(private geolocation: Geolocation) {
+  constructor(private geolocation: Geolocation, private service: MapProvider) {
 
   }
 
   ionViewDidLoad(){
     this.initMap();
+    let pro = this.service.getAddress();
+    Promise.resolve(pro).then(data => {
+      this.validationList = JSON.parse(JSON.stringify(data)).response;
+      console.log(this.validationList);
+      this.address = this.validationList;
+      console.log(this.address);
+    });
+
   }
 
   initMap() {

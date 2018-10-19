@@ -10,6 +10,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GraphicPositionPage} from "../pages/graphic-position/graphic-position";
 import { AgmCoreModule } from '@agm/core';
+import { MapProvider } from '../providers/map/map';
+import {HttpClientModule, HttpClient} from "@angular/common/http";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ import { AgmCoreModule } from '@agm/core';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBbsOlMryAHu2ESwHHSwrDBIUU7fiENNoM'
@@ -37,7 +42,8 @@ import { AgmCoreModule } from '@agm/core';
     SplashScreen,
     GoogleMaps,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MapProvider
   ]
 })
 export class AppModule {}

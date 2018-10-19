@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {AppComponent} from './app.component';
 
-let apiUrl = 'http://192.168.1.22:8080';
+let apiUrl = 'http://localhost:8080/';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class MapService {
   constructor(private http: Http) {
     this.http = http;
   }
-
+  
   getAddress() {
     return this.callGetService('/map/', 'getAddress');
   }
