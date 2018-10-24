@@ -107,7 +107,7 @@ public class Map implements UserDetails {
 	
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+	public Collection<GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		return null;
 	}

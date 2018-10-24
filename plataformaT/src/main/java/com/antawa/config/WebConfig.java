@@ -67,7 +67,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				// starts authorizing configurations
 				.authorizeRequests()
 				// ignoring the guest's urls "
-				.antMatchers("/drivers/register","/account/register", "/account/login", "/logout", "/account/logout").permitAll().and()
+				.antMatchers("/drivers/register","/account/register", "/account/login", "/logout", "/account/logout","/", "/access/login").permitAll().and()
 				// authenticate all remaining URLS
 				//.anyRequest().fullyAuthenticated().and()
 				/*
@@ -81,6 +81,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
 				// disabling the CSRF - Cross Site Request Forgery
 				.csrf().disable();
+		
 	}
 
 }

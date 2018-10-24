@@ -8,6 +8,8 @@ import {UsersService} from '../users.service';
 })
 export class RegisterComponent implements OnInit {
 
+  constructor(private userService: UsersService) {
+  }
   ngOnInit() {
   }
   /*
@@ -15,13 +17,12 @@ export class RegisterComponent implements OnInit {
     responseData: any;
     UsersRegister: registerUser= new registerUser();
 
-    constructor(private userService: UsersService) {
-    }
+
 
 
 
     RUsers() {
-      this.userService.registerUsers(this.userData,'/users/register').then((result) => {
+      this.userService.registerUsers(this.userData,'/users/M_Register').then((result) => {
         this.responseData = result;
         console.log(this.responseData);
         //if (this.responseData.status == 1) {

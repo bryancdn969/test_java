@@ -9,20 +9,28 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TableComponent } from './table/table.component';
 import {RouterModule, Routes} from '@angular/router';
-import { SearchComponent } from './search/search.component';
-import { UpdateComponent } from './update/update.component';
+import { SearchComponent } from './M_search/search.component';
+import { UpdateComponent } from './M_Update/update.component';
 import { FormsModule }   from '@angular/forms';
 import {HttpClientModule, HttpClient} from "@angular/common/http";
 import {HttpModule} from '@angular/http';
-import { RouteComponent } from './route/route.component';
+import { RouteComponent } from './M_Route/route.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { LoginComponent } from './login/login.component';
+import {RegisterComponent} from './M_Register/register.component';
 
 
 const appRoutes: Routes = [
-  { path: 'Search', component: SearchComponent },
-  { path: 'Update', component: UpdateComponent },
-  { path: 'Route', component: RouteComponent }
-
+  {
+    path: '',
+    component: LoginComponent,
+    children: [
+      {path: 'Register', component: RegisterComponent},
+      //{ path: 'Login', component: LoginComponent },
+      {path: 'Update', component: UpdateComponent},
+      {path: 'Route', component: RouteComponent}
+    ]
+  }
 ];
 
 @NgModule({
@@ -33,7 +41,9 @@ const appRoutes: Routes = [
     TableComponent,
     SearchComponent,
     UpdateComponent,
-    RouteComponent
+    RouteComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

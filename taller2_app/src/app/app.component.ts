@@ -1,32 +1,34 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import {MenuController, Nav, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {GraphicPositionPage} from "../pages/graphic-position/graphic-position";
+import {LoginPage} from "../pages/login/login";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
-
-  rootPage: any = HomePage;
-
+  rootPage: any = LoginPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar,
+              public splashScreen: SplashScreen, public menu: MenuController) {
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'Graphic Figure', component: GraphicPositionPage }
+      { title: 'Graphic Figure', component: GraphicPositionPage },
+      //{ title: 'Login', component: LoginPage }
     ];
-
   }
 
   initializeApp() {
@@ -34,6 +36,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+     // this.menu.enable(false);
       this.splashScreen.hide();
     });
   }
@@ -43,4 +46,5 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
 }

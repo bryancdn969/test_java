@@ -13,13 +13,15 @@ import { AgmCoreModule } from '@agm/core';
 import { MapProvider } from '../providers/map/map';
 import {HttpClientModule, HttpClient} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
+import {LoginPage} from "../pages/login/login";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    GraphicPositionPage
+    GraphicPositionPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import {HttpModule} from "@angular/http";
     MyApp,
     HomePage,
     ListPage,
-    GraphicPositionPage
+    GraphicPositionPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

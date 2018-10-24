@@ -1,6 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Geolocation} from "@ionic-native/geolocation";
 import { MouseEvent } from '@agm/core';
+import {MenuController} from "ionic-angular";
 
 @Component({
   selector: 'page-home',
@@ -17,9 +18,13 @@ export class HomePage {
 
   map: any;
 
-  constructor(private geolocation: Geolocation) {
+  constructor(private geolocation: Geolocation, public menuCtrl: MenuController) {
+    //this.menuCtrl.enable(true);
 
+  }
 
+  ionViewWillEnter () {
+    this.menuCtrl.enable (true);
   }
 
   markerDragEnd(m: marker, $event: MouseEvent) {

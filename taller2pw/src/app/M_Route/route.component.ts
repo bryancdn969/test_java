@@ -96,7 +96,7 @@ export class RouteComponent implements OnInit {
 
         this.map.triggerResize()
       } else {
-        alert("Sorry, this search produced no results.");
+        alert("Sorry, this M_search produced no results.");
       }
     })
   }
