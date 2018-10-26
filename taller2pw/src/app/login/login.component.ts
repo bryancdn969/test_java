@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {ActivatedRoute, Router} from '@angular/router';
+import {UsersService} from "../users.service";
+import {Router} from '@angular/router';
+import {User} from "../model/model.user";
+import {SearchComponent} from '../M_MarkCircle/search.component';
 
 @Component({
   selector: 'app-login',
@@ -10,30 +11,35 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  model: any = {};
+  user: User=new User();
+  errorMessage:string;
+  responseData : any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private http: HttpClient
-  ) { }
+  constructor(private authService :UsersService, private router: Router) { }
 
   ngOnInit() {
-    sessionStorage.setItem('token', '');
   }
 
-  login() {
-    let url = 'http://localhost:8080/access/login';
-    this.http.get<Observable<boolean>>(url).subscribe(isValid => {
-      if (isValid) {
-        sessionStorage.setItem('token', btoa(this.model.username + ':' + this.model.password));
-        this.router.navigate(['']);
-        console.log("Good...");
-
-      } else {
-        alert("Authentication failed.")
-      }
-    });
-  }
+    login(key: string){
+      this.authService.logIn(this.user)
+        .then((data) => {
+          this.responseData = data;
+          console.log(JSON.stringify(this.responseData));
+          if(this.responseData.principal.role == "USER" ){
+            localStorage.setItem('userData',JSON.stringify(this.responseData));
+            this.router.navigate(['/Mark a circle']);
+          }
+          else if (this.responseData.principal.role == "SADMIN"){
+            localStorage.setItem('userData',JSON.stringify(this.responseData));
+            this.router.navigate(['/nav']);
+          } else{
+            console.log("Nothig permisson");
+          }
+            //this.router.navigate(['/nav']);
+          },err=>{
+            this.errorMessage="error :  Username or password is incorrect";
+          }
+        )
+    }
 
 }

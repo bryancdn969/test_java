@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import {ListPage} from "../pages/list/list";
 import {GraphicPositionPage} from "../pages/graphic-position/graphic-position";
 import {LoginPage} from "../pages/login/login";
 
@@ -16,20 +16,60 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = LoginPage;
   pages: Array<{title: string, component: any}>;
+  userData:any;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
               public splashScreen: SplashScreen, public menu: MenuController) {
 
+    this.userData = localStorage.getItem('userData');
+
+    if (this.userData == null){
+
+    }
+    else if(this.userData.principal == undefined){
+
+    }
+    else if (this.userData.principal.role == "SADMIN" ) {
+      this.pages = [
+        { title: 'Home', component: HomePage},
+        { title: 'List', component: ListPage}
+      ];
+      //this.openPage(HomePage);
+    }
+    else if (this.userData.principal.role == "USER" ){
+      this.pages = [
+        { title: 'Graphic Figure', component: GraphicPositionPage}
+      ];
+      //this.openPage(GraphicPositionPage);
+    }
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
+    /*this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'Graphic Figure', component: GraphicPositionPage },
       //{ title: 'Login', component: LoginPage }
-    ];
+    ];*/
+
   }
+
+
+  /*ionViewWillEnter() {
+    if (this.userData.principal.role == "SADMIN" ) {
+      this.pages = [
+        { title: 'Home', component: HomePage},
+        { title: 'List', component: ListPage}
+      ];
+      this.openPage(HomePage);
+    } else if (this.userData.principal.role == "USER" ){
+      this.pages = [
+        { title: 'Graphic Figure', component: GraphicPositionPage}
+      ];
+      this.openPage(GraphicPositionPage);
+    }
+  }*/
 
   initializeApp() {
     this.platform.ready().then(() => {

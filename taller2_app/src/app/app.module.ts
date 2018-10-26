@@ -14,6 +14,7 @@ import { MapProvider } from '../providers/map/map';
 import {HttpClientModule, HttpClient} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
 import {LoginPage} from "../pages/login/login";
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {LoginPage} from "../pages/login/login";
     GoogleMaps,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MapProvider
+    MapProvider,
+    AuthServiceProvider
   ]
 })
 export class AppModule {}

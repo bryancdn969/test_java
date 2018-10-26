@@ -46,12 +46,12 @@ export class TableDataSource extends DataSource<TableItem> {
   }
 
   /**
-   * Connect this data source to the table. The table will only M_Update when
+   * Connect this data source to the table. The table will only M_TraceRoute when
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<TableItem[]> {
-    // Combine everything that affects the rendered data into one M_Update
+    // Combine everything that affects the rendered data into one M_TraceRoute
     // stream for the data-table to consume.
     const dataMutations = [
       observableOf(this.data),

@@ -1,9 +1,7 @@
 package com.antawa.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,8 +12,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.antawa.services.impl.AppUserDetailsServiceImpl;
-
 /**
  * 
  * @author Victor Quimbiamba <vicanall@gmail.com>
@@ -25,17 +21,6 @@ import com.antawa.services.impl.AppUserDetailsServiceImpl;
 @EnableWebSecurity
 // Modifying or overriding the default spring boot security.
 public class WebConfig extends WebSecurityConfigurerAdapter {
-
-	@Autowired
-	private AppUserDetailsServiceImpl appUserDetailsService;
-
-	// This method is for overriding the default AuthenticationManagerBuilder.
-	// We can specify how the user details are kept in the application. It may
-	// be in a database, LDAP or in memory.
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(appUserDetailsService);
-	}
 
 	// this configuration allow the client app to access the this api
 	// all the domain that consume this api must be included in the allowed o'rings
