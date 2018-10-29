@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild, Output, EventEmitter, OnInit, OnChanges, SimpleChange} from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import {IonicPage, MenuController, NavController} from 'ionic-angular';
 import {Geolocation} from "@ionic-native/geolocation";
 import {MapProvider} from "../../providers/map/map";
 
@@ -21,12 +21,14 @@ export class GraphicPositionPage {
   address: any[];
   validationList: any;
 
-  constructor(private geolocation: Geolocation, private service: MapProvider) {
-
+  constructor(private geolocation: Geolocation, public menuCtrl: MenuController,
+              private service: MapProvider) {
+   // this.menuCtrl.enable(true);
   }
 
   ionViewDidLoad(){
     this.initMap();
+
     let pro = this.service.getAddress();
     Promise.resolve(pro).then(data => {
       this.validationList = JSON.parse(JSON.stringify(data)).response;
@@ -35,6 +37,10 @@ export class GraphicPositionPage {
       console.log(this.address);
     });
 
+  }
+
+  ionViewWillEnter () {
+    this.menuCtrl.enable (true);
   }
 
   initMap() {

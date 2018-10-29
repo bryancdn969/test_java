@@ -8,22 +8,20 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TableComponent } from './table/table.component';
-import {RouterModule, Routes} from '@angular/router';
-import { SearchComponent } from './search/search.component';
-import { UpdateComponent } from './update/update.component';
+import { SearchComponent } from './M_MarkCircle/search.component';
+import { UpdateComponent } from './M_TraceRoute/update.component';
 import { FormsModule }   from '@angular/forms';
 import {HttpClientModule, HttpClient} from "@angular/common/http";
 import {HttpModule} from '@angular/http';
-import { RouteComponent } from './route/route.component';
+import { RouteComponent } from './M_MarkRoute/route.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
-
-
-const appRoutes: Routes = [
-  { path: 'Search', component: SearchComponent },
-  { path: 'Update', component: UpdateComponent },
-  { path: 'Route', component: RouteComponent }
-
-];
+import { LoginComponent } from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {UsersService} from './users.service';
+import {UrlPermission} from './urlPermission/url.perimission';
+import {routing} from "./app.routing";
+import {FacebookModule} from "ngx-facebook";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,7 +31,9 @@ const appRoutes: Routes = [
     TableComponent,
     SearchComponent,
     UpdateComponent,
-    RouteComponent
+    RouteComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -50,15 +50,18 @@ const appRoutes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    RouterModule.forRoot(appRoutes),
+    //RouterModule.forRoot(app.routing.appRoutes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBbsOlMryAHu2ESwHHSwrDBIUU7fiENNoM'
     }),
     FormsModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    routing,
+    FacebookModule.forRoot(),
+    NgbModule.forRoot()
   ],
-  providers: [GoogleMapsAPIWrapper],
+  providers: [GoogleMapsAPIWrapper,UsersService,UrlPermission],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

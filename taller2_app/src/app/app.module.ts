@@ -13,13 +13,16 @@ import { AgmCoreModule } from '@agm/core';
 import { MapProvider } from '../providers/map/map';
 import {HttpClientModule, HttpClient} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
+import {LoginPage} from "../pages/login/login";
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    GraphicPositionPage
+    GraphicPositionPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import {HttpModule} from "@angular/http";
     MyApp,
     HomePage,
     ListPage,
-    GraphicPositionPage
+    GraphicPositionPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -43,7 +47,8 @@ import {HttpModule} from "@angular/http";
     GoogleMaps,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MapProvider
+    MapProvider,
+    AuthServiceProvider
   ]
 })
 export class AppModule {}
