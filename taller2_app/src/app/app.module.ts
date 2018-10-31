@@ -11,7 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GraphicPositionPage} from "../pages/graphic-position/graphic-position";
 import { AgmCoreModule } from '@agm/core';
 import { MapProvider } from '../providers/map/map';
-import {HttpClientModule, HttpClient} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
 import {LoginPage} from "../pages/login/login";
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';

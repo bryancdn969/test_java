@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewChild, Output, EventEmitter, OnInit, OnChanges, SimpleChange} from '@angular/core';
-import {IonicPage, MenuController, NavController} from 'ionic-angular';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {IonicPage, MenuController} from 'ionic-angular';
 import {Geolocation} from "@ionic-native/geolocation";
 import {MapProvider} from "../../providers/map/map";
 
@@ -36,7 +36,6 @@ export class GraphicPositionPage {
       this.address = this.validationList;
       console.log(this.address);
     });
-
   }
 
   ionViewWillEnter () {
@@ -55,15 +54,7 @@ export class GraphicPositionPage {
     };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement,mapOptions);
-
     this.directionsDisplay.setMap(this.map);
-
-      let marker = new google.maps.Marker({
-        map: this.map,
-        animation: google.maps.Animation.DROP,
-        position: this.map.getCenter()
-      });
-
     });
   }
 
@@ -76,7 +67,7 @@ export class GraphicPositionPage {
       if (status === 'OK') {
         this.directionsDisplay.setDirections(response);
       } else {
-        window.alert('Directions request failed due to ' + status);
+        console.log("Directions request failed due to " + status);
       }
     });
   }

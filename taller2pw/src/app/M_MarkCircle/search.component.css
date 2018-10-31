@@ -1,7 +1,10 @@
 agm-map {
-  height: 300px;
+  top: 80px;
+  width: 95%;
+  height: 75%;
+  margin: 2px;
+  border-color: deepskyblue;
 }
-
 
 * {
   font-family: Lato;
@@ -9,4 +12,5 @@ agm-map {
 
 a {
   color: darkblue;
+  border: skyblue 4px solid;
 }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {MenuController, Nav, Platform} from 'ionic-angular';
+import {Nav, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -15,11 +15,11 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
   rootPage: any = LoginPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: any}>;
   userData:any;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-              public splashScreen: SplashScreen, public menu: MenuController) {
+              public splashScreen: SplashScreen) {
 
     this.userData = localStorage.getItem('userData');
 
@@ -31,45 +31,17 @@ export class MyApp {
     }
     else if (this.userData.principal.role == "SADMIN" ) {
       this.pages = [
-        { title: 'Home', component: HomePage},
-        { title: 'List', component: ListPage}
+        { title: 'Home', component: HomePage, icon: 'pin'},
+        { title: 'List', component: ListPage, icon: 'film'}
       ];
-      //this.openPage(HomePage);
     }
     else if (this.userData.principal.role == "USER" ){
       this.pages = [
-        { title: 'Graphic Figure', component: GraphicPositionPage}
+        { title: 'Graphic Figure', component: GraphicPositionPage, icon: 'locate'}
       ];
-      //this.openPage(GraphicPositionPage);
     }
-
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    /*this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      { title: 'Graphic Figure', component: GraphicPositionPage },
-      //{ title: 'Login', component: LoginPage }
-    ];*/
-
   }
-
-
-  /*ionViewWillEnter() {
-    if (this.userData.principal.role == "SADMIN" ) {
-      this.pages = [
-        { title: 'Home', component: HomePage},
-        { title: 'List', component: ListPage}
-      ];
-      this.openPage(HomePage);
-    } else if (this.userData.principal.role == "USER" ){
-      this.pages = [
-        { title: 'Graphic Figure', component: GraphicPositionPage}
-      ];
-      this.openPage(GraphicPositionPage);
-    }
-  }*/
 
   initializeApp() {
     this.platform.ready().then(() => {

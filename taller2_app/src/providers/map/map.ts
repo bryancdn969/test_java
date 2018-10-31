@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Http, Headers, RequestOptions} from '@angular/http';
-import {map} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {Http, Headers} from '@angular/http';
 
 let apiUrl = 'http://localhost:8080';
 

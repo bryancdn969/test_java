@@ -38,17 +38,13 @@ export class UpdateComponent implements OnInit {
   }
 
   initMap() {
-
     // google maps zoom level
-    let zoom: number = 8;
-
+    //  let zoom: number = 8;
     // initial center position for the map
     let lat: number = 51.673858;
     let lng: number = 7.815982;
 
-
       let latLng = new google.maps.LatLng(lat, lng);
-
       let mapOptions = {
         center: latLng,
         zoom: 18,
@@ -56,19 +52,10 @@ export class UpdateComponent implements OnInit {
       };
 
       this.map = new google.maps.Map(this.mapElement.nativeElement,mapOptions);
-
       this.directionsDisplay.setMap(this.map);
-
-      let marker = new google.maps.Marker({
-        map: this.map,
-        animation: google.maps.Animation.DROP,
-        position: this.map.getCenter()
-      });
-
   }
 
   calculateAndDisplayRoute() {
-
     this.directionsService.route({
       origin: this.start,
       destination: this.end,

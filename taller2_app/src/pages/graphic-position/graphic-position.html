@@ -3,28 +3,27 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>GraphicPosition</ion-title>
+    <ion-title>Graphic destination</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 
-  <h1 text-center> Cuarto entregable y Quinto entregable</h1>
-  <p>4: Generar una funcionalidad para definir una ruta en el mapa de google</p>
-  <p>5: Generar una funcionalidad para seleccionar una coordenada en el mapa de google</p>
+  <ion-card>
+    <h1 text-center> Select your destination</h1>
 
-    <div id="floating-panel">
-      <b>From: </b>
-  <select [(ngModel)]="start" name="address" class="custom-select" id="start" (change)="calculateAndDisplayRoute()">
-      <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option> 
-  </select><br>
-  <b>To: </b>
-  <select [(ngModel)]="end" name="address" class="custom-select" id="end" (change)="calculateAndDisplayRoute()">
-      <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option> 
-  </select>
-    </div>
-  <div class="p" #map id="map"></div>
+      <div id="floating-panel">
+        <b>From: </b>
+          <select [(ngModel)]="start" name="address" class="custom-select" id="start" (change)="calculateAndDisplayRoute()">
+              <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option> </select><br>
+        <b>To: </b>
+          <select [(ngModel)]="end" name="address" class="custom-select" id="end" (change)="calculateAndDisplayRoute()">
+              <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option> </select>
+      </div>
+  </ion-card>
+
+    <div class="p" #map id="map"></div>
 </ion-content>
 
 

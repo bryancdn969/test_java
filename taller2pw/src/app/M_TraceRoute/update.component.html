@@ -1,20 +1,18 @@
 
-<h1 text-center> Cuarto entregable y Quinto entregable</h1>
-<p>4: Generar una funcionalidad para definir una ruta en el mapa de google</p>
-<p>5: Generar una funcionalidad para seleccionar una coordenada en el mapa de google</p>
-
 <body>
-<div id="floating-panel">
-  <b>From: </b>
-  <select [(ngModel)]="start" name="address" class="custom-select" id="start" (change)="calculateAndDisplayRoute()">
-      <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option> 
-  </select><br>
-  <b>To: </b>
-  <select [(ngModel)]="end" name="address" class="custom-select" id="end" (change)="calculateAndDisplayRoute()">
-      <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option> 
-  </select>
-</div>
-<div class="p" #map id="map">
-</div>
+
+  <h1 align="center">Select your destination</h1>
+
+    <div id="floating-panel">
+      <b>From: </b>
+      <select [(ngModel)]="start" name="address" class="custom-select" id="start" (change)="calculateAndDisplayRoute()">
+          <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option>
+      </select><br>
+      <b>To: </b>
+      <select [(ngModel)]="end" name="address" class="custom-select" id="end" (change)="calculateAndDisplayRoute()">
+          <option *ngFor="let a of address" [ngValue]="a">{{a.address}}</option>
+      </select>
+    </div>
+    <div #map id="map"></div>
 
 </body>

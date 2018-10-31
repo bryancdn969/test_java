@@ -9,8 +9,8 @@ import {SearchComponent} from './M_MarkCircle/search.component';
 
 const appRoutes: Routes = [
       { path: 'nav', component: NavComponent ,canActivate: [UrlPermission]},
-      { path: 'Trace a route', component: UpdateComponent},
-      { path: 'Mark a circle', component: SearchComponent},
+      { path: 'TraceRoute', component: UpdateComponent},
+      { path: 'markCircle', component: SearchComponent},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
 

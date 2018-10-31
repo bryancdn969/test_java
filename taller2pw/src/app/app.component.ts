@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 export class AppComponent {
   title = 'taller2pw';
 
-  constructor(public router:Router){
+  constructor(public router: Router){
 
   }
 

@@ -1,7 +1,12 @@
 <!-- <app-nav>
-
   <router-outlet></router-outlet>
-
-
 </app-nav> -->
 <router-outlet></router-outlet>
+<div *ngIf="router.url === '/nav'">
+  <app-nav></app-nav>
+</div>
+
+
+<div *ngIf="router.url === '/TraceRoute'">
+  <app-nav></app-nav>
+</div>

@@ -50,7 +50,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 		
 		http.cors().and()//.addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class)
 				// starts authorizing configurations
-				.authorizeRequests()
+				.authorizeRequests().anyRequest().hasRole("USER")
 				// ignoring the guest's urls "
 				.antMatchers("/drivers/register","/account/register", "/account/login", "/logout", "/account/logout","/", "/access/login").permitAll().and()
 				// authenticate all remaining URLS
