@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {AppComponent} from './app.component';
 
-let apiUrl = 'http://localhost:8080/';
+let apiUrl = 'http://localhost:8080';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,14 @@ export class MapService {
   
   getAddress() {
     return this.callGetService('/map/', 'getAddress');
+  }
+
+  getGender(id: any){
+    return this.callGetService('/api/get/gender?id=' + id, 'getCatalogGender(id: any)');
+  }
+
+  getFrom(id: any){
+    return this.callGetService('/api/get/from?id=' + id, 'getCatalogFrom(id: any)');
   }
 
   private callGetService(url: string, method: any) {

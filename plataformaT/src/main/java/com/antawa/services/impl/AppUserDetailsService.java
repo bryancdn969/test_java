@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.antawa.model.Person;
 import com.antawa.model.User;
-
 
 /**
  * This Service class for providing the user credentials from the database.
@@ -21,10 +21,18 @@ public class AppUserDetailsService implements UserDetailsService {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	PersonServiceImpl personService;
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userService.find(username);
 		return  user;
 	}
-
+	
+	
+	public Person loadPersonByCI(String cedula){
+		Person person = personService.find(cedula);
+		return  person;
+	}
 }

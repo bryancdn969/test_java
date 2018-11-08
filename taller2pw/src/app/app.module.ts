@@ -22,6 +22,7 @@ import {UrlPermission} from './urlPermission/url.perimission';
 import {routing} from "./app.routing";
 import {FacebookModule} from "ngx-facebook";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterPersonComponent } from './register-person/register-person.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UpdateComponent,
     RouteComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RegisterPersonComponent
   ],
   imports: [
     BrowserModule,

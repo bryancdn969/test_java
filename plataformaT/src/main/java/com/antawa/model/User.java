@@ -1,14 +1,21 @@
 package com.antawa.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -24,7 +31,11 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Entity
 @Table(name = "users")
 @Scope("session")
-public class User implements UserDetails {
+public  class User implements UserDetails{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public static enum Role{ USER }
 	/**
@@ -32,17 +43,17 @@ public class User implements UserDetails {
 	 */
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id ;
+	private Long id;
 	/**
 	 * Description of the property email.
 	 */
 	@Column(unique = true)
-	private String username ;
+	private String username;
 	/**
 	 * Description of the property password.
 	 */
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private String password ;
+	private String password;
 	/**
 	 * Description of the property role , to grant authority to the user .
 	 */
@@ -61,6 +72,7 @@ public class User implements UserDetails {
     	this.password= password;
     	this.fullName=fullName;
     }
+    
 	@JsonIgnore
 	@Override
 	public boolean isEnabled() {
@@ -139,7 +151,116 @@ public class User implements UserDetails {
 	public Long getId() {
 		return id;
 	}
-
-
-
 }
+//public class User implements Serializable {
+//
+//	/**
+//	 * 
+//	 */
+//	private static final long serialVersionUID = 1L;
+//
+//	private Long id;
+//	private String username ;
+//	private String password ;
+//	private boolean enabled;
+//	private String fullName;
+//	private Set<Role> roles = new HashSet<Role>(0);
+//	
+//	public User(){	
+//    }
+//	
+//	public User(String username,String password,String fullName, Boolean enabled){
+//    	this.username=username;
+//    	this.password= password;
+//    	this.fullName=fullName;
+//    	this.enabled=enabled;
+//    }
+//    
+//    public User(String username,String password,String fullName, Boolean enabled, Set<Role> roles){
+//    	this.username=username;
+//    	this.password= password;
+//    	this.fullName=fullName;
+//    	this.enabled=enabled;
+//    	this.roles=roles;
+//    }
+//    
+//	/**
+//	 * Description of the property id.
+//	 */
+//	@Id
+//	@GeneratedValue(strategy= GenerationType.IDENTITY)
+//	@Column(name = "id", unique = true, nullable = false)
+//	public Long getId() {
+//		return this.id;
+//	}
+//	
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+//	
+//	/**
+//	 * Description of the property user_name or email.
+//	 */
+//	@Column(name = "username", unique = true, nullable = false,length = 30)
+//	public String getUsername() {
+//		return this.username;
+//	}
+//	
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
+//	
+//	/**
+//	 * Description of the property password.
+//	 */
+//	@JsonProperty(access = Access.WRITE_ONLY)
+//	@Column(name = "password", unique = true, nullable = false,length = 8)
+//	public String getPassword() {
+//		return password;
+//	}
+//	
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
+//	
+//	/**
+//	 * Description of the property full_name.
+//	 */
+//	@Column(name = "full_name", unique = true, nullable = false,length = 50)
+//	public String getFullName() {
+//		return fullName;
+//	} 	
+//	
+//	public void setFullName(String fullName) {
+//		this.fullName = fullName;
+//	}
+//	
+//	/**
+//	 * Description of the property enabled.
+//	 */
+//	@Column(name = "enabled", nullable = false)
+//	public boolean isActive(){
+//		return this.enabled;
+//	}
+//
+//	public void setActive(boolean active){
+//		this.enabled = active;
+//	}
+//	
+//	/**
+//	 * Description of the property many to many with roles.
+//	 */
+//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinTable(name = "role_users", joinColumns = { 
+//			@JoinColumn(name = "roles_id", nullable = false, updatable = false) }, 
+//			inverseJoinColumns = { @JoinColumn(name = "users_id", 
+//					nullable = false, updatable = false) })
+//	public Set<Role> getRoles() {
+//		return this.roles;
+//	}
+//
+//	public void setRoles(Set<Role> roles) {
+//		this.roles = roles;
+//	}
+//	
+//}

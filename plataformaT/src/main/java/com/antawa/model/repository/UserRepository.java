@@ -9,5 +9,5 @@ import com.antawa.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	public User findOneByUsername(String username);
-	//public User findOneByRol(String rol);
+	
 }

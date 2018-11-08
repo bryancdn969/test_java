@@ -21,5 +21,5 @@ public class MapServiceImpl implements MapService{
 	@Override
 	public List<Map> findAll() {
 		return mapRepository.findAll();
-}
+	}
 }

@@ -3,12 +3,12 @@ package com.antawa.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.antawa.model.repository.UserRepository;
 import com.antawa.model.User;
+import com.antawa.model.repository.UserRepository;
 
 @Service
-public class UserService {
-
+public class UserService{
+	
 	@Autowired
 	UserRepository userRepository;
 
@@ -26,9 +26,6 @@ public class UserService {
 
 	public User find(Long id) {
 		return userRepository.findOne(id);
-	}
+}
 	
-//	public User findByRol(String rol) {
-//		return userRepository.findOneByRol(rol);
-//	}
 }

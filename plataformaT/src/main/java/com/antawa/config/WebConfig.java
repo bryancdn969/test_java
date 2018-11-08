@@ -1,7 +1,13 @@
 package com.antawa.config;
 
+import java.util.Properties;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,6 +17,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import com.antawa.services.impl.AppUserDetailsService;
 
 /**
  * 
@@ -22,6 +30,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 // Modifying or overriding the default spring boot security.
 public class WebConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	AppUserDetailsService appUserDetailsService;
+
+	// This method is for overriding the default AuthenticationManagerBuilder.
+	// We can specify how the user details are kept in the application. It may
+	// be in a database, LDAP or in memory.
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(appUserDetailsService);
+	}
+	
 	// this configuration allow the client app to access the this api
 	// all the domain that consume this api must be included in the allowed o'rings
 	@Bean
@@ -50,11 +69,12 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 		
 		http.cors().and()//.addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class)
 				// starts authorizing configurations
-				.authorizeRequests().anyRequest().hasRole("USER")
+				.authorizeRequests()
 				// ignoring the guest's urls "
-				.antMatchers("/drivers/register","/account/register", "/account/login", "/logout", "/account/logout","/", "/access/login").permitAll().and()
+				.antMatchers("/api/login","/account/register","/api/register","/account/login",
+						"/api/get/catalog","/api/get/gender","/api/get/from").permitAll()
 				// authenticate all remaining URLS
-				//.anyRequest().fullyAuthenticated().and()
+				.anyRequest().fullyAuthenticated().and()
 				/*
 				 * "/logout" will log the user out by invalidating the HTTP Session, cleaning up
 				 * any {link rememberMe()} authentication that was configured,
@@ -68,5 +88,25 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				.csrf().disable();
 		
 	}
+	
+	@Bean
+    public JavaMailSender getMailSender(){
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+         
+        //Using gmail
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("Your-gmail-id");
+        mailSender.setPassword("Your-gmail-password");
+         
+        Properties javaMailProperties = new Properties();
+        javaMailProperties.put("mail.smtp.starttls.enable", "true");
+        javaMailProperties.put("mail.smtp.auth", "true");
+        javaMailProperties.put("mail.transport.protocol", "smtp");
+        javaMailProperties.put("mail.debug", "true");//Prints out everything on screen
+         
+        mailSender.setJavaMailProperties(javaMailProperties);
+        return mailSender;
+    }
 
 }
