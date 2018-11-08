@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="card card-container">
+    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+    <p id="profile-name" class="profile-name-card"></p>
+
+    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+      <span id="reauth-email" class="reauth-email"></span>
+
+      <!-- Identification-->
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
+        <label for="cedula">Cedula</label>
+        <input type="text" class="form-control" name="cedula" id="cedula" [(ngModel)]="person.cedula" #cedula="ngModel" required maxlength="10"/>
+        <div *ngIf="f.submitted && !cedula.valid" class="help-block">The identification is required</div>
+      </div>
+
+      <!-- First name-->
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" name="firstName" id="firstName" [(ngModel)]="person.firstName" #firstName="ngModel" required maxlength="70" />
+        <div *ngIf="f.submitted && !firstName.valid" class="help-block">The first name is required</div>
+      </div>
+      <!-- Last name-->
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" name="lastName" id="lastName" [(ngModel)]="person.lastName" #lastName="ngModel" required maxlength="70"/>
+        <div *ngIf="f.submitted && !lastName.valid" class="help-block">The last name is required</div>
+      </div>
+
+      <!-- Email-->
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+        <label for="email">Email Address</label>
+        <input type="text" class="form-control" name="email" id="email" pattern="[^ @]*@[^ @]*" [(ngModel)]="person.email" #email="ngModel" required maxlength="150"/>
+        <div *ngIf="f.submitted && !email.valid" class="help-block">
+          <div *ngIf="email.errors.required">
+            Email is required.
+          </div>
+          <div *ngIf="email.errors.pattern">
+            A valid email address is required
+          </div>
+        </div>
+      </div>
+
+      <!-- Gender-->
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !gender.valid }">
+        <label for="gender">Gender</label>
+        <select [(ngModel)]="person.gender" name="gender" class="form-control" id="gender" #gender="ngModel">
+          <option *ngFor="let key of itemsGender" [ngValue]="key[0]">{{ key[1] }}</option>
+        </select>
+        <div *ngIf="f.submitted && !gender.valid" class="help-block">The gender is required</div>
+      </div>
+
+      <!-- Nationality-->
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nationality.valid }">
+        <label for="nationality">Nationality</label>
+        <select  class="form-control"  name="nationality" id="nationality" [(ngModel)]="person.nationality" #nationality="ngModel">
+          <option *ngFor="let key of itemsFrom" [ngValue]="key[0]">{{ key[1] }}</option>
+        </select>
+        <div *ngIf="f.submitted && !nationality.valid" class="help-block">The nationality is required</div>
+      </div>
+
+      <!-- Address-->
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" name="address" id="address" [(ngModel)]="person.address" #address="ngModel" required maxlength="150"/>
+        <div *ngIf="f.submitted && !address.valid" class="help-block">The address is required</div>
+      </div>
+
+      <!-- Phone-->
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" name="phone" id="phone" [(ngModel)]="person.phone" #phone="ngModel" required maxlength="70"/>
+        <div *ngIf="f.submitted && !phone.valid" class="help-block">The phone is required</div>
+      </div>
+
+
+      <div id="remember" class="checkbox">
+
+      </div>
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Create Account Person</button>
+      <button [routerLink]="['/login']" class="btn btn-lg btn-danger btn-block btn-cancel" type="button">Cancel</button>
+
+    </form><!-- /form -->
+
+  </div><!-- /card-container -->
+</div><!-- /container -->
